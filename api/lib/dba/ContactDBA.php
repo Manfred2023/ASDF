@@ -1,4 +1,8 @@
 <?php
+// Created by Manfred MOUKATE on 4/3/24, 2:14 PM,
+// Email moukatemanfred@gmail.com
+// Copyright (c) 2024. All rights reserved.
+// Last modified 4/3/24, 2:14 PM
 
 use RedBeanPHP\OODBBean;
 use RedBeanPHP\RedException\SQL;
@@ -6,7 +10,7 @@ use RedBeanPHP\RedException\SQL;
 abstract class ContactDBA extends DBA
 {
     protected const TABLE = 'contact';
-    protected const TOKEN = 'token';
+    protected const CTOKEN  = 'token';
     protected const FSTNAME = 'firstname';
     protected const LSTNAME = 'lastname';
     protected const MOBILE = 'mobile';
@@ -36,7 +40,7 @@ abstract class ContactDBA extends DBA
             return null;
 
         if (!$update){
-            $bean->{self::TOKEN} = (int)self::_shortToken(self::TABLE);
+            $bean->{self::CTOKEN} = (int)self::_shortToken(self::TABLE);
         }
         $bean->{self::FSTNAME} = QString::_set(QString::_latin($contact->getFirstname()));
         $bean->{self::LSTNAME} = QString::_set(QString::_latin($contact->getLastname()));

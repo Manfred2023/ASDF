@@ -6,9 +6,6 @@ header('Content-Type: application/json');
 if (!require realpath(dirname(__DIR__, 3)) . '/conf.php')
     http_response_code(403);
 
-
-
-
 try { 
 
     # Check required fields

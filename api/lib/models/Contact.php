@@ -1,4 +1,8 @@
 <?php
+// Created by Manfred MOUKATE on 4/3/24, 2:14 PM,
+// Email moukatemanfred@gmail.com
+// Copyright (c) 2024. All rights reserved.
+// Last modified 4/3/24, 2:14 PM
 
 /* use RedBeanPHP\RedException\SQL; */
 
@@ -15,31 +19,33 @@ class Contact extends ContactDBA
     private string $mobile; 
     private ?string $whatsapp; 
     private ?string $office;
-   
-    
-    public function __construct(
-        ?int $id= null,
-        ?int $token = NULL, 
-       
-        ?string $firstname = NULL, 
-        string $lastname = NULL,
-        string $mobile = NULL, 
-        string $gender = NULL,
-        City $city = NULL,  
-        ?string $whatsapp = NULL,  
-        ?string $office = NULL,  
-         )
+    private ?array $authorization;
+
+    /**
+     * @param int|null $id
+     * @param int|null $token
+     * @param string $gender
+     * @param string|null $firstname
+     * @param string $lastname
+     * @param City $city
+     * @param string $mobile
+     * @param string|null $whatsapp
+     * @param string|null $office
+
+     */
+    public function __construct(?int $id, ?int $token, string $gender, ?string $firstname, string $lastname, City $city, string $mobile, ?string $whatsapp, ?string $office,  )
     {
         $this->id = $id;
         $this->token = $token;
         $this->gender = $gender;
         $this->firstname = $firstname;
-        $this->lastname = $lastname;    
-        $this->city = $city; 
+        $this->lastname = $lastname;
+        $this->city = $city;
         $this->mobile = $mobile;
         $this->whatsapp = $whatsapp;
-        $this->office =$office;
+        $this->office = $office;
     }
+
 
     public function getId(): ?int
     {
@@ -136,14 +142,12 @@ class Contact extends ContactDBA
  
         return true;
     }
-
     public function save(): ?Contact
     {
         if ($this->isOK())
             return self::_toBean($this);
         return null;
     }
-
     public function toArray(): ?array
     {
         return [
@@ -157,7 +161,6 @@ class Contact extends ContactDBA
             OFFICE => QString::_get($this-> office),
         ];
     }
-
     static public function _get(int $criteria, $value): ?Contact
     {
         return match (true) {
@@ -167,8 +170,6 @@ class Contact extends ContactDBA
             default => null,
         };
     }
-
-    
     static public function _list(): ?array
     {
         if (!empty($beans = parent::_getAll(self::TABLE, []))) {
@@ -178,9 +179,6 @@ class Contact extends ContactDBA
         }
         return $contacts ?? null;
     }
-
-
-
     private function isGood(): bool
     {
         if (is_null(trim($this->token)))
@@ -188,7 +186,6 @@ class Contact extends ContactDBA
 
         return true;
     }
-
     public function delete(): bool
     {
         if ($this->isGood()) {

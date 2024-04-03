@@ -4,6 +4,7 @@
 class Country extends CountryDBA
 {
     private ?int $id;
+    private ?int $token;
     private string $namefr;
     private string $nameen;
     private int $code;
@@ -14,6 +15,7 @@ class Country extends CountryDBA
 
     public function __construct(
         int $id = NULL,
+        int $token = NULL,
         string $namefr = NULL,
         string $nameen = NULL,
         int $code = NULL,
@@ -22,6 +24,7 @@ class Country extends CountryDBA
         int $dialcode = NULL
     ) {
         $this->id = $id;
+        $this->token = $token;
         $this->namefr = $namefr;
         $this->nameen = $nameen;
         $this->code = $code;
@@ -33,6 +36,10 @@ class Country extends CountryDBA
     public function getId(): ?int
     {
         return $this->id;
+    }
+    public function getToken(): ?int
+    {
+        return $this->token;
     }
 
     public function getNamefr(): string

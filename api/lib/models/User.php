@@ -1,4 +1,8 @@
 <?php
+// Created by Manfred MOUKATE on 4/3/24, 2:15 PM,
+// Email moukatemanfred@gmail.com
+// Copyright (c) 2024. All rights reserved.
+// Last modified 4/3/24, 2:15 PM
 
 class User extends UserDBA
 {
@@ -6,27 +10,31 @@ class User extends UserDBA
     private ?string $token;
     private string $email;
     private string $password; 
-    private ?Contact $contact; 
+    private ?Contact $contact;
     private ?Profile $profile;
     private bool $statut;
+    private ?array $authorization;
 
-    public function __construct(
-        ?int $id = NULL, 
-        ?string $token = NULL, 
-        string $email = NULL, 
-        string $password = NULL, 
-        ?Contact $contact = NULL,
-        ?Profile $profile = null,
-        bool $statut = false, )
-
+    /**
+     * @param int|null $id
+     * @param string|null $token
+     * @param string $email
+     * @param string $password
+     * @param Contact|null $contact
+     * @param Profile|null $profile
+     * @param bool $statut
+     * @param array|null $authorization
+     */
+    public function __construct(?int $id, ?string $token, string $email, string $password, ?Contact $contact, ?Profile $profile, bool $statut, ?array $authorization)
     {
         $this->id = $id;
         $this->token = $token;
         $this->email = $email;
         $this->password = $password;
-        $this->contact = $contact; 
+        $this->contact = $contact;
         $this->profile = $profile;
-        $this->statut = $statut; 
+        $this->statut = $statut;
+        $this->authorization = $authorization;
     }
 
     public function getId(): ?int
@@ -34,45 +42,24 @@ class User extends UserDBA
         return $this->id;
     }
 
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
     public function getToken(): ?string
     {
         return $this->token;
     }
 
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-    
-    public function getContact(): ?Contact
-    {
-        return $this->contact;
-    }
-
-    public function getProfile(): ?Profile
-    {
-        return $this->profile;
-    }
-
-    public function getStatut(): ?bool
-    {
-        return $this->statut;
-    }
- 
-
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
-
-    public function setToken(string $token): void
+    public function setToken(?string $token): void
     {
         $this->token = $token;
+    }
+
+    public function getEmail(): string
+    {
+        return $this->email;
     }
 
     public function setEmail(string $email): void
@@ -80,24 +67,56 @@ class User extends UserDBA
         $this->email = $email;
     }
 
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
     public function setPassword(string $password): void
     {
         $this->password = $password;
     }
 
+    public function getContact(): ?Contact
+    {
+        return $this->contact;
+    }
+
     public function setContact(?Contact $contact): void
     {
         $this->contact = $contact;
-    } 
+    }
+
+    public function getProfile(): ?Profile
+    {
+        return $this->profile;
+    }
+
     public function setProfile(?Profile $profile): void
     {
         $this->profile = $profile;
-    } 
+    }
 
-    public function setStatut(?bool $statut): void
+    public function isStatut(): bool
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(bool $statut): void
     {
         $this->statut = $statut;
     }
+
+    public function getAuthorization(): ?array
+    {
+        return $this->authorization;
+    }
+
+    public function setAuthorization(?array $authorization): void
+    {
+        $this->authorization = $authorization;
+    }
+
     private function isObligatory(): bool
     {
         if (QString::_isNull($this->email))

@@ -1,4 +1,8 @@
 <?php
+// Created by Manfred MOUKATE on 4/3/24, 2:13 PM,
+// Email moukatemanfred@gmail.com
+// Copyright (c) 2024. All rights reserved.
+// Last modified 4/3/24, 2:13 PM
 
 use RedBeanPHP\OODBBean;
 
@@ -11,6 +15,7 @@ abstract class UserDBA extends DBA
     protected const CONTACT = 'contact'; 
     protected const PROFIL = 'profil';
     protected const STATUT = 'statut';
+    protected const AUTHRZTN = 'authorization';
 
     
 
@@ -32,7 +37,9 @@ static protected function _toBean(?User $user): ?User
         $bean->{self::PASSWORD} = QString::_set($user->getPassword());   
         $bean->{self::CONTACT} = (int)$user->getContact()->getId(); 
         $bean->{self::PROFIL} = (int)$user->getProfile()->getId(); 
-        $bean->{self::STATUT} = QString::_set($user->getStatut());
+        $bean->{self::STATUT} = QString::_set($user->isStatut());
+        $bean->{self::AUTHRZTN} = $user->getAuthorization();
+
         if (R::store($bean) === 0)
             return null;
 
@@ -41,7 +48,6 @@ static protected function _toBean(?User $user): ?User
 
         return $user;
     }
-
     static protected function _toObject(?OODBBean $bean): ?User
     {
         if (!$bean instanceof OODBBean)
@@ -53,16 +59,16 @@ static protected function _toBean(?User $user): ?User
             $contact = Contact::_get(Criteria::ID, $bean->{self::CONTACT});
         if ($bean->{self::PROFIL} !== null)
             $profil = Profile::_get(Criteria::ID, $bean->{self::PROFIL});
- 
 
         return new User(
             (int)$bean->id,
             (string)$bean->{self::TOKEN},
             (string)$bean->{self::EMAIL},
             (string)$bean->{self::PASSWORD},
-            $contact, 
-            $profil, 
+            $contact,
+            $profil,
             (bool)$bean->{self::STATUT},
+            (array)$bean->{self::AUTHRZTN},
         );
     }
     static protected function _findByEmail(?string $email): ?OODBBean

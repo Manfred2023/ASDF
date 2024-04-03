@@ -1,5 +1,8 @@
 <?php
-
+// Created by Manfred MOUKATE on 4/3/24, 2:14 PM,
+// Email moukatemanfred@gmail.com
+// Copyright (c) 2024. All rights reserved.
+// Last modified 4/3/24, 2:14 PM
 
 class City extends CityDBA
 {
@@ -8,8 +11,13 @@ class City extends CityDBA
     private string $name;
     private ?Country $country;
 
-
-    public function __construct(int $id = NULL, string $token = NULL, string $name = NULL, ?Country $country = NULL)
+    /**
+     * @param int|null $id
+     * @param string|null $token
+     * @param string $name
+     * @param Country|null $country
+     */
+    public function __construct(?int $id, ?string $token, string $name, ?Country $country)
     {
         $this->id = $id;
         $this->token = $token;
@@ -22,9 +30,19 @@ class City extends CityDBA
         return $this->id;
     }
 
-    public function getToken(): string
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
+    public function getToken(): ?string
     {
         return $this->token;
+    }
+
+    public function setToken(?string $token): void
+    {
+        $this->token = $token;
     }
 
     public function getName(): string
@@ -32,31 +50,20 @@ class City extends CityDBA
         return $this->name;
     }
 
-    public function getcountry(): ?Country
-    {
-        return $this->country;
-    }
-
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
-
-    public function setToken(string $token): void
-    {
-        $this->token = $token;
-    }
-
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getCountry(): ?Country
+    {
+        return $this->country;
     }
 
     public function setCountry(?Country $country): void
     {
         $this->country = $country;
     }
-
 
 
     private function ToHave(): bool
@@ -66,7 +73,7 @@ class City extends CityDBA
         return true;
     }
 
-    public function save(): City
+    public function save(): ?City
     {
         if (!$this->ToHave())
             return null;

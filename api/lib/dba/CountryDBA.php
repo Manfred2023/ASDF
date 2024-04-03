@@ -1,4 +1,8 @@
 <?php
+// Created by Manfred MOUKATE on 4/3/24, 2:14 PM,
+// Email moukatemanfred@gmail.com
+// Copyright (c) 2024. All rights reserved.
+// Last modified 4/3/24, 2:14 PM
 
 use RedBeanPHP\OODBBean;
 
@@ -12,7 +16,7 @@ use RedBeanPHP\OODBBean;
         protected const ALPHA3 = 'alpha3';
         protected const DIALCODE = 'dialcode';
 
-        static protected function _toBean(Country $country): Country
+        static protected function _toBean(Country $country): ?Country
         {
             if (!$country instanceof Country)
                 return null;
@@ -45,7 +49,8 @@ use RedBeanPHP\OODBBean;
 
             if (!empty($vars = $bean->export())) {
                 return new Country(
-                    (int)$vars[self::CID],
+                    $vars[self::CID],
+                    $vars[self::CTOKEN],
                     QString::_get($vars[self::NAMEFR]),
                     QString::_get($vars[self::NAMEEN]),
                     (int)$vars[self::CODE],

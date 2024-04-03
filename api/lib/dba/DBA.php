@@ -1,7 +1,10 @@
 <?php
+// Created by Manfred MOUKATE on 4/3/24, 2:14 PM,
+// Email moukatemanfred@gmail.com
+// Copyright (c) 2024. All rights reserved.
+// Last modified 4/3/24, 2:14 PM
 
-
-    use RedBeanPHP\OODBBean;
+use RedBeanPHP\OODBBean;
 
     abstract class DBA
     {

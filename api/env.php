@@ -2,11 +2,9 @@
 
 const TOKEN = 'token';
 
-const RESUME = 'resume';
+const NAME = 'name';
 
-const DIVIDER_DASH = '-';
-const DIVIDER_SEMICOLON = ';';
-const DIVIDER_DOTS = ':';
+const RESUME = 'resume';
 
 # COUNTRY
 const CNAMEFR = 'namefr';
@@ -20,12 +18,7 @@ const DIALCODE= 'dialcode';
 const CITYNAME = 'name';
 const COUNTRY = 'country';
 
-#LANGUAGE
-const LANNAME = 'name';
-const WRITING = 'writing';
-const SPEAKING = 'speaking';
-const READING = 'reading';
-const AVERAGE = 'average';
+
 
 #CONTACT
 const FSTNAME = 'firstname';
@@ -42,40 +35,8 @@ const PASSWORD = 'password';
 const CONTACT = 'contact';
 const PROFIL = 'profile';
 const STATUT = 'statut';
+const AUTHRZTN = 'authorization';
 
 #PROFIL  
-const PARNT = 'parent'; 
-
-#EXPERIENCE
-const POSITION = 'position';
-const COMPANY = 'company';
-const PLACE = 'place';
-const TYPEPLACE = 'typeofplace';
-const CONTRACT = 'contract';
-const DESCRIPTION = 'description';
-
-#COMPANY
-const TAXID = 'taxid';
-const NAME = 'name';
-const CNAME = 'commercialname';
-const LFORM = 'legalform';
-const SIZE = 'size';
-const BLINE = 'businessline';
-const POBOX = 'pobox';
-const WSITE = 'website';
-
-#DOMAINE
-const DOMAINE ='domaine';
-const SECTEUR = 'secteur';
-
-#PROJECT
-const LINK = 'link';
-const TITLE = 'title';
-const USER = 'user';
-
-#CERTIFICATION
-// const NAME = 'name';
-const AGENCY = 'agency';
-const YEAR = 'year';
-
+const PARNT = 'parent';
 
