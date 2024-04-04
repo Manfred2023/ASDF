@@ -35,8 +35,17 @@ const PASSWORD = 'password';
 const CONTACT = 'contact';
 const PROFIL = 'profile';
 const STATUT = 'statut';
-const AUTHRZTN = 'authorization';
 
 #PROFIL  
 const PARNT = 'parent';
+
+#PROJECT
+const TITLE = 'title';
+const COMMENT= 'comment';
+const PARTCPNT = 'participant';
+const OBJCTV = 'objective';
+const REFRNC = 'reference';
+const COLOR = 'color';
+const ABSTRCT = 'abstract';
+
 

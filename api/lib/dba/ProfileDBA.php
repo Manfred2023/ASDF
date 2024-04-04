@@ -20,9 +20,6 @@ abstract class ProfileDBA extends DBA
     {
         if (!$profile instanceof profile)
             return null;
- 
-        
-
 
         $bean = ($update = (int)$profile->getId() > 0)
             ? R::loadForUpdate(self::TABLE, $profile->getId())
@@ -39,15 +36,10 @@ abstract class ProfileDBA extends DBA
         $bean->{self::RESUME} = QString::_set(QString::_latin($profile->getResume()));
         $bean->{self::PARNT} = QString::_set(QString::_latin($profile->getParent()));
 
-
-
-
         if (($lastID = (int)R::store($bean)) > 0)
             return self::_toObject(R::load(self::TABLE, $lastID));
-
         return null;
     }
-
     static protected function _toObject(?OODBBean $bean): ?Profile
 {
     if (!$bean instanceof OODBBean || $bean->isEmpty())
