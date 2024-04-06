@@ -167,6 +167,44 @@ class User extends UserDBA
         };
     }
 
+    static public function _getByToken(string $token): ?self
+    {
+        $user = R::findOne('users', 'token = ?', [$token]);
+
+        if ($user instanceof RedBeanPHP\OODBBean) {
+            $item = self::_toObject($user);
+
+            if ($item instanceof self) {
+                return $item;
+            }
+        }
+
+        return null;
+    }
+    static public function getContactToken(array $contacts): ?string
+    {
+        if (empty($contacts)) return '';
+        $contactTokens = [];
+        foreach ($contactTokens as $contact) {
+            if ($contact['token'] !== null) {
+                $contactTokens[] = $contact['token'];
+            }
+        }
+        return implode(',', $contactTokens);
+    }
+    static  public function parseContactsToken($contactTokenString): array
+    {
+        $contactIds = explode(',', $contactTokenString);
+       $contacts = [];
+        foreach ($contactIds as $contactId) {
+            $contacts[] = self::_getByToken($contactId);
+        }
+        return $contacts;
+    }
+
+
+
+
     /**
      * @return User[]
      */
@@ -186,20 +224,7 @@ class User extends UserDBA
     }
 
 
-    static public function _getByToken(string $token): ?self
-    {
-        $user = R::findOne('users', 'token = ?', [$token]);
 
-        if ($user instanceof RedBeanPHP\OODBBean) {
-            $item = self::_toObject($user);
-
-            if ($item instanceof self) {
-                return $item;
-            }
-        }
-
-        return null;
-    }
     static public function _getByID(int $id): ?self
     {
         $user = R::findOne('users', 'contact = ?', [$id]);

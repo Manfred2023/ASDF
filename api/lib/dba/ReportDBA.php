@@ -7,4 +7,10 @@
 class ReportDBA extends DBA
 {
 
+    protected const TABLE = 'report';
+    protected const TOKEN  = 'token';
+    protected const TITLE = 'title';
+    protected const USER = 'user';
+    protected const FILE = 'participant';
+    protected const PROJECT = 'project';
 }

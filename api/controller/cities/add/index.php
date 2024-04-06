@@ -8,10 +8,6 @@ header('Content-Type: application/json');
 
 if (!@require realpath(dirname(__DIR__, 3)) . '/conf.php')
     http_response_code(403);
-
-
-
-
 try {
     # Check required fields
     Criteria::_formRequiredCheck([CITYNAME, COUNTRY], $_POST);
@@ -30,9 +26,6 @@ try {
 
     Reply::_error('sorry!!! could not register the new city');
 
-    
-
-    
 } catch (Exception $exception) {
     Reply::_exception($exception);
 }

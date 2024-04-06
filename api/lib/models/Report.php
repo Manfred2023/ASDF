@@ -106,6 +106,67 @@ class Report extends ReportDBA
     {
         $this->user = $user;
     }
+    private function isOK(): bool
+    {
+        if (!$this->user instanceof User)
+            throw new Exception("Enter user name ");
+        if (!$this->project instanceof Project)
+            throw new Exception("Enter project name ");
+
+        return true;
+    }
+    public function save(): ?Report
+    {
+        if ($this->isOK())
+            return self::_toBean($this);
+        return null;
+    }
+    public function toArray(): ?array
+    {
+        return [
+            TOKEN => ($this->token),
+            TITLE => QString::_get($this->firstname),
+
+            GENDER => QString::_get($this->gender),
+            CITY => $this->city instanceof City ? $this->city->toArray() : null,
+            MOBILE => QString::_get($this->mobile),
+            WHTSPP => QString::_get($this->whatsapp),
+            OFFICE => QString::_get($this-> office),
+        ];
+    }
+    static public function _get(int $criteria, $value): ?Report
+    {
+        return match (true) {
+            $criteria == Criteria::ID && (int)$value > 0 => self::_toObject(parent::_getOne(self::TABLE, [parent::CID => (int)$value])),
+            $criteria == Criteria::TOKEN && !QString::_isNull($value) => self::_toObject(parent::_getOne(self::TABLE, [parent::CTOKEN => trim($value)])),
+            $criteria == Criteria::TITLE && !QString::_isNull($value) => self::_toObject(parent::_getOne(self::TABLE, [parent::TITLE => trim($value)])),
+            default => null,
+        };
+    }
+    static public function _list(): ?array
+    {
+        if (!empty($beans = parent::_getAll(self::TABLE, []))) {
+            foreach ($beans as $bean)
+                if (($item = self::_toObject($bean)) instanceof self)
+                    $reports[] = $item->toArray();
+        }
+        return $reports ?? null;
+    }
+    private function isGood(): bool
+    {
+        if (is_null(trim($this->token)))
+            throw new Exception('Token is required!');
+
+        return true;
+    }
+    public function delete(): bool
+    {
+        if ($this->isGood()) {
+            parent::_toTrash(self::TABLE, $this->id);
+            return true;
+        }
+        return false;
+    }
 
 
 

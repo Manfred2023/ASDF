@@ -47,6 +47,6 @@ const OBJCTV = 'objective';
 const REFRNC = 'reference';
 const COLOR = 'color';
 const ABSTRCT = 'abstract';
-const DATETIME = 'datetime';
+const DATTM = 'datetime';
 
 
