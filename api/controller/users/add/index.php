@@ -35,8 +35,8 @@ try {
 
     } else {
         User::checkEmail($_POST[EMAIL]); 
-        $user = (new User(NULL, NULL, $_POST[EMAIL], password_hash($_POST[PASSWORD], PASSWORD_DEFAULT),$contact,$profile, $_POST[EMAIL] ));
-        
+        $user = (new User(NULL, NULL, $_POST[EMAIL], password_hash($_POST[PASSWORD], PASSWORD_DEFAULT),$contact,$profile,$_POST[STATUT] ));
+        $user->save();
     }
     if ($user instanceof User){
         Reply::_success($user->toArray()); 

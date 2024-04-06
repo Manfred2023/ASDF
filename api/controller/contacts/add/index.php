@@ -29,7 +29,7 @@ try {
 
     } else {
         Contact::checkNumber($_POST[MOBILE]); 
-        $contact = (new Contact(null,null,$_POST[FSTNAME],$_POST[LSTNAME],$_POST[MOBILE],$_POST[GENDER],$city,$_POST[WHTSPP],$_POST[OFFICE] ))->save();
+        $contact = (new Contact(null,null,$_POST[GENDER],$_POST[FSTNAME],$_POST[LSTNAME],$city,$_POST[MOBILE],$_POST[WHTSPP],$_POST[OFFICE] ))->save();
         
     }
    

@@ -13,7 +13,7 @@ class Profile extends ProfileDBA
     private ?int $id;
     private ?int $token;
     private string $name;
-    private string $resume;
+    private ?string $resume;
     private string $parent;
    
     
@@ -21,7 +21,7 @@ class Profile extends ProfileDBA
         ?int $id= null,
         ?int $token = NULL,  
         string $name = NULL, 
-        string $resume = NULL,
+        ?string $resume = NULL,
         string $parent = NULL,   )
     {
         $this->id = $id;

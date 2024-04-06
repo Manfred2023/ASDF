@@ -9,6 +9,7 @@ use RedBeanPHP\OODBBean;
     abstract class CountryDBA extends DBA
     {
         protected const TABLE = 'country';
+        protected const CTOKEN = 'token';
         protected const NAMEFR = 'namefr';
         protected const NAMEEN = 'nameen';
         protected const CODE = 'code';
@@ -21,13 +22,15 @@ use RedBeanPHP\OODBBean;
             if (!$country instanceof Country)
                 return null;
 
-            $bean = (int)$country->getId() > 0
+            $bean = ($update = (int)$country->getId() > 0)
                 ? R::loadForUpdate(self::TABLE, $country->getId())
                 : R::dispense(self::TABLE);
 
             if (!$bean instanceof OODBBean)
                 return null;
-
+            if (!$update){
+                    $bean->{self::CTOKEN} = (int)self::_shortToken(self::TABLE);
+            }
             $bean->{self::NAMEFR} = QString::_alphaNumOnly($country->getNamefr());
             $bean->{self::NAMEEN} = QString::_alphaNumOnly($country->getNameen());
             $bean->{self::CODE} = (int)$country->getCode();

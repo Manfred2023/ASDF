@@ -39,7 +39,7 @@ class ProjectDBA extends DBA
         $bean->{self::DATETIME} =  $project->getLaunch() ;
         $bean->{self::TITLE} = QString::_set(QString::_latin($project->getTitle()));
         $bean->{self::OBJCTV} = (int)($project->getObjective());
-        $bean->{self::PARTCPNT} =  $project->getParticipant() ;
+        $bean->{self::PARTCPNT} = $project->getParticipant();
         $bean->{self::CITY} = $project->getCity()->getId();
         $bean->{self::COMMENT} = QString::_set(QString::_latin($project->getComment()));
         $bean->{self::STATUT} = $project->getStatut()->getId();
@@ -66,7 +66,7 @@ class ProjectDBA extends DBA
             $vars[self::TITLE],
             $vars[self::OBJCTV],
             $vars[self::COMMENT],
-            $vars[self::PARTCPNT],
+            $vars[self::PARTCPNT ],
             $vars[self::DATETIME],
             City::_get(Criteria::ID, (int)$vars[self::CITY]),
             Statut::_get(Criteria::ID, (int)$vars[self::STATUT])

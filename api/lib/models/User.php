@@ -12,8 +12,7 @@ class User extends UserDBA
     private string $password; 
     private ?Contact $contact;
     private ?Profile $profile;
-    private bool $statut;
-    private ?array $authorization;
+    private bool $statut; 
 
     /**
      * @param int|null $id
@@ -22,10 +21,9 @@ class User extends UserDBA
      * @param string $password
      * @param Contact|null $contact
      * @param Profile|null $profile
-     * @param bool $statut
-     * @param array|null $authorization
+     * @param bool $statut 
      */
-    public function __construct(?int $id, ?string $token, string $email, string $password, ?Contact $contact, ?Profile $profile, bool $statut, ?array $authorization)
+    public function __construct(?int $id, ?string $token, string $email, string $password, ?Contact $contact, ?Profile $profile, bool $statut )
     {
         $this->id = $id;
         $this->token = $token;
@@ -33,8 +31,7 @@ class User extends UserDBA
         $this->password = $password;
         $this->contact = $contact;
         $this->profile = $profile;
-        $this->statut = $statut;
-        $this->authorization = $authorization;
+        $this->statut = $statut; 
     }
 
     public function getId(): ?int
@@ -107,15 +104,7 @@ class User extends UserDBA
         $this->statut = $statut;
     }
 
-    public function getAuthorization(): ?array
-    {
-        return $this->authorization;
-    }
-
-    public function setAuthorization(?array $authorization): void
-    {
-        $this->authorization = $authorization;
-    }
+    
 
     private function isObligatory(): bool
     {

@@ -145,7 +145,7 @@ class Country extends CountryDBA
     public function toArray(): array
     {
         return [
-            
+            TOKEN=>(int)$this->token,
             CNAMEFR => $this->namefr,
             CNAMEEN => $this->nameen,
             CODE => (int)$this->code,
@@ -154,13 +154,7 @@ class Country extends CountryDBA
             DIALCODE => (int)$this->dialcode
         ];
     }
-    public function toArrayCity(): array
-    {
-        return [
-            CNAMEFR => $this->namefr,
-           
-        ];
-    }
+    
 
     /**
      * return ?Country

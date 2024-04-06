@@ -15,7 +15,9 @@ try {
     # Check required fields
     Criteria::_formRequiredCheck([EMAIL, PASSWORD], $_POST);
     $user = User::_get(Criteria::EMAIL, $_POST[EMAIL]);
-       
+    if (!($user instanceof User))
+        return false;
+  
     if(password_verify($_POST[PASSWORD], $user->getPassword())){
         $_SESSION['auth'] = 'ok';
         Reply::_success("request_was_successfully_processed");  

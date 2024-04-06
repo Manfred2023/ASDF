@@ -69,11 +69,11 @@ abstract class ContactDBA extends DBA
     return new Contact(
         $vars[self::CID],
         $vars[self::CTOKEN],
+        $vars[self::GENDER],
         $vars[self::FSTNAME],
         $vars[self::LSTNAME],
-        $vars[self::MOBILE],
-        $vars[self::GENDER],
         City::_get(Criteria::ID, (int)$vars[self::CITY]), 
+        $vars[self::MOBILE],    
         $vars[self::WHTSPP],
         $vars[self::OFFICE],
           );

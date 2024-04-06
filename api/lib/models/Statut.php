@@ -16,10 +16,10 @@ class Statut extends  StatutDBA
     /**
      * @param int|null $id
      * @param int|null $token
-     * @param String $name
-     * @param String $reference
-     * @param String|null $color
-     * @param String|null $abstract
+     * @param string $name
+     * @param string $reference
+     * @param string|null $color
+     * @param string |null $abstract
      */
     public function __construct(?int $id, ?int $token, string $name, string $reference, ?string $color, ?string $abstract)
     {

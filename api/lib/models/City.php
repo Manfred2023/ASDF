@@ -92,18 +92,12 @@ class City extends CityDBA
         public function toArray(): array
         {
             return [
-                TOKEN => ($this->token),
+                TOKEN => (int)($this->token),
                 CITYNAME => QString::_get($this->name),
-                COUNTRY => $this->country instanceof COUNTRY ? $this->country->toArrayCity() : null,
+                COUNTRY => $this->country instanceof COUNTRY ? $this->country->toArray() : null,
             ];
         }
-    public function toArrayContact(): array
-    {
-        return [
-            CITYNAME => QString::_get($this->name),
-            COUNTRY => $this->country instanceof COUNTRY ? $this->country->toArrayCity() : null,
-        ];
-    }
+   
 
 
     static public function _get(int $criteria, $value): ?City

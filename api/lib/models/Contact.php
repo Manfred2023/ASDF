@@ -155,7 +155,7 @@ class Contact extends ContactDBA
             FSTNAME => QString::_get($this->firstname),
             LSTNAME => QString::_get($this->lastname),
             GENDER => QString::_get($this->gender),
-            CITY => $this->city instanceof City ? $this->city->toArrayContact() : null, 
+            CITY => $this->city instanceof City ? $this->city->toArray() : null, 
             MOBILE => QString::_get($this->mobile),
             WHTSPP => QString::_get($this->whatsapp),
             OFFICE => QString::_get($this-> office),

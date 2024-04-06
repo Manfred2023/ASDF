@@ -90,7 +90,7 @@ class Project extends ProjectDBA
         $this->comment = $comment;
     }
 
-    public function getParticipant(): array
+    public function getParticipant(): ?array
     {
         return $this->participant;
     }
@@ -152,6 +152,7 @@ class Project extends ProjectDBA
             self::COMMENT => QString::_get($this->comment),
             self::OBJCTV => QString::_get($this->objective),
             self::PARTCPNT =>  $this->participant,
+            //self::PARTCPNT => User::_getByToken((int)$this->participant),
             self::DATETIME => $this->launch,
             self::CITY => $this->city instanceof City ? $this->city->toArray() : null,
             self::STATUT => $this->statut instanceof Statut ? $this->city->toArray() : null,

@@ -17,6 +17,9 @@ class Criteria
         const NAME= 9;
         const EMAIL = 17;
         const MOBILE = 27;
+
+        const TITLE = 28;
+        const DATITIME  = 29;
      
         /**
          * @param array|null $fields

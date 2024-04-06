@@ -37,8 +37,7 @@ static protected function _toBean(?User $user): ?User
         $bean->{self::PASSWORD} = QString::_set($user->getPassword());   
         $bean->{self::CONTACT} = (int)$user->getContact()->getId(); 
         $bean->{self::PROFIL} = (int)$user->getProfile()->getId(); 
-        $bean->{self::STATUT} = QString::_set($user->isStatut());
-        $bean->{self::AUTHRZTN} = $user->getAuthorization();
+        $bean->{self::STATUT} = QString::_set($user->isStatut()); 
 
         if (R::store($bean) === 0)
             return null;
@@ -67,8 +66,7 @@ static protected function _toBean(?User $user): ?User
             (string)$bean->{self::PASSWORD},
             $contact,
             $profil,
-            (bool)$bean->{self::STATUT},
-            (array)$bean->{self::AUTHRZTN},
+            (bool)$bean->{self::STATUT}, 
         );
     }
     static protected function _findByEmail(?string $email): ?OODBBean
