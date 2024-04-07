@@ -12,7 +12,7 @@ class Project extends ProjectDBA
     private string $objective;
     private ?string $comment;
     private array $participant;
-    private datetime $launch;
+    private string $launch;
     private City $city;
     private Statut $statut;
 
@@ -23,11 +23,11 @@ class Project extends ProjectDBA
      * @param string $objective
      * @param string|null $comment
      * @param array $participant
-     * @param datetime $launch
+     * @param string $launch
      * @param City $city
      * @param Statut $statut
      */
-    public function __construct(?int $id, ?int $token, string $title, string $objective, ?string $comment, array $participant, datetime $launch, City $city, Statut $statut)
+    public function __construct(?int $id, ?int $token, string $title, string $objective, ?string $comment, array $participant, string $launch, City $city, Statut $statut)
     {
         $this->id = $id;
         $this->token = $token;
@@ -100,12 +100,12 @@ class Project extends ProjectDBA
         $this->participant = $participant;
     }
 
-    public function getLaunch(): datetime
+    public function getLaunch(): string
     {
         return $this->launch;
     }
 
-    public function setLaunch(datetime $launch): void
+    public function setLaunch(string $launch): void
     {
         $this->launch = $launch;
     }
@@ -146,17 +146,29 @@ class Project extends ProjectDBA
     }
     public function toArray(): ?array
     {
-        return [
+        return [ 
             self::TOKEN => ($this->token),
             self::TITLE => QString::_get($this->title),
             self::COMMENT => QString::_get($this->comment),
             self::OBJCTV => QString::_get($this->objective),
-            self::PARTCPNT =>  $this->participant,
-            //self::PARTCPNT => User::_getByToken((int)$this->participant),
+            self::PARTCPNT =>  User::getUserToken($this->participant),
             self::DATETIME => $this->launch,
             self::CITY => $this->city instanceof City ? $this->city->toArray() : null,
-            self::STATUT => $this->statut instanceof Statut ? $this->city->toArray() : null,
+            self::STATUT => $this->statut instanceof Statut ? $this->statut->toArray() : null,
+        ];
+    }
 
+    public function toArrayFromBd(): ?array
+    {
+        return [ 
+            self::TOKEN => ($this->token),
+            self::TITLE => QString::_get($this->title),
+            self::COMMENT => QString::_get($this->comment),
+            self::OBJCTV => QString::_get($this->objective),
+            self::PARTCPNT =>  ($this->participant),
+            self::DATETIME => $this->launch,
+            self::CITY => $this->city instanceof City ? $this->city->toArray() : null,
+            self::STATUT => $this->statut instanceof Statut ? $this->statut->toArray() : null,
         ];
     }
     static public function _get(int $criteria, $value): ?Project
@@ -173,7 +185,7 @@ class Project extends ProjectDBA
         if (!empty($beans = parent::_getAll(self::TABLE, []))) {
             foreach ($beans as $bean)
                 if (($item = self::_toObject($bean)) instanceof self)
-                    $projects[] = $item->toArray();
+                    $projects[] = $item->toArrayFromBd();
         }
         return $projects ?? null;
     }

@@ -1,31 +1,13 @@
 <?php
-// Router.php
 
-class Router {
-    private $routes = [];
- 
-    public function addRoute($url, $action) {
-        $this->routes[$url] = $action;
-    }
- 
-    public function dispatch() {
-        $url = $_SERVER['REQUEST_URI'];
-        if (array_key_exists($url, $this->routes)) {
-            $action = $this->routes[$url];
-            $this->callAction($action);
-        } else { 
-            echo 'Erreur 404 - Page non trouvée';
-        }
-    }
- 
-    private function callAction($action) { 
-        list($controllerName, $methodName) = explode('@', $action);
-         
-        require $controllerName . '.man';
- 
-        $controller = new $controllerName();
- 
-        $controller->$methodName();
-    }
-}
+use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\RouteCollection;
+
+$routes = new RouteCollection();
+
+$routes->add('login', new Route('/login', ['_controller' => 'App\Controller\LoginController::login']));
+$routes->add('register', new Route('/register', ['_controller' => 'App\Controller\RegisterController::register']));
+$routes->add('profile', new Route('/profile', ['_controller' => 'App\Controller\ProfileController::showProfile']));
+
+return $routes;
 ?>

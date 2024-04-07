@@ -12,6 +12,7 @@ if (!require realpath(dirname(__DIR__, 3)) . '../conf.php')
 try {
     Criteria::_formRequiredCheck([TOKEN, TITLE, OBJCTV, COMMENT, PARTCPNT, DATTM,CITY, STATUT ], $_POST);
     $date = new DateTime($_POST[DATTM]);
+    $date->format('Y-m-d H:i:s');
 
     if (!($city = City::_get(Criteria::TOKEN, trim($_POST[CITY]))) instanceof City)
         Reply::_error("City isn't already register, make sure to register it first!");
@@ -25,16 +26,14 @@ try {
         $project->setTitle($_POST[TITLE]);
         $project->setObjective($_POST[OBJCTV]);
         $project->setComment($_POST[COMMENT]);
-        $project->setParticipant($_POST[PARTCPNT]);
-        $project->setLaunch($date);
+        $project->setParticipant(array($_POST[PARTCPNT]));
+        $project->setLaunch($_POST[DATTM]);
         $project->setCity($city);
         $project->setStatut($statut);
         $project->save();
-
     } else {
-        $project = (new Project(null,null,$_POST[TITLE],$_POST[OBJCTV],$_POST[COMMENT],array($_POST[PARTCPNT]),$date,$city,$statut, ))->save();
+        $project = (new Project(null,null,$_POST[TITLE],$_POST[OBJCTV],$_POST[COMMENT],array($_POST[PARTCPNT]),$_POST[DATTM],$city,$statut, ))->save();
     }
-
     if ($project instanceof Project){
         Reply::_success($project->toArray());
     }

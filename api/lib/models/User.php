@@ -167,7 +167,7 @@ class User extends UserDBA
         };
     }
 
-    static public function _getByToken(string $token): ?self
+    static public function _getByToken(int $token): ?User
     {
         $user = R::findOne('users', 'token = ?', [$token]);
 
@@ -181,29 +181,47 @@ class User extends UserDBA
 
         return null;
     }
-    static public function getContactToken(array $contacts): ?string
+    // to bean
+    static public function getUserToken($contactView): array    
     {
-        if (empty($contacts)) return '';
-        $contactTokens = [];
-        foreach ($contactTokens as $contact) {
-            if ($contact['token'] !== null) {
-                $contactTokens[] = $contact['token'];
+        $contactlist = [];  
+    
+        foreach ($contactView as $contact) {
+            $user = User::_get(Criteria::TOKEN, (int)$contact);
+            if ($user) {
+                $contactlist[] = $user->toArray();
             }
         }
-        return implode(',', $contactTokens);
+    
+        return $contactlist;
     }
-    static  public function parseContactsToken($contactTokenString): array
+    
+
+    static public function splitArrayToString($array) {
+        return implode(',', $array);
+    }
+    static public function setUserToken(array $contactView): string    
+    {
+        return $contactlist = User::splitArrayToString($contactView);
+    }
+    static public function unsplitArrayToString($string) {
+        return explode(',', $string);
+    }
+    static public function parseContactsToken($contactTokenString): array
     {
         $contactIds = explode(',', $contactTokenString);
-       $contacts = [];
+        $contacts = [];
+    
         foreach ($contactIds as $contactId) {
-            $contacts[] = self::_getByToken($contactId);
+            $user = User::_get(Criteria::TOKEN, $contactId);
+            if ($user) {
+                $contacts[] = $user->toArray();
+            }
         }
+    
         return $contacts;
     }
-
-
-
+    
 
     /**
      * @return User[]

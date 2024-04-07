@@ -39,7 +39,7 @@ class ProjectDBA extends DBA
         $bean->{self::DATETIME} =  $project->getLaunch() ;
         $bean->{self::TITLE} = QString::_set(QString::_latin($project->getTitle()));
         $bean->{self::OBJCTV} = (int)($project->getObjective());
-        $bean->{self::PARTCPNT} = User::getContactToken($project->getParticipant());
+        $bean->{self::PARTCPNT} = User::setUserToken($project->getParticipant());
         $bean->{self::CITY} = $project->getCity()->getId();
         $bean->{self::COMMENT} = QString::_set(QString::_latin($project->getComment()));
         $bean->{self::STATUT} = $project->getStatut()->getId();
@@ -49,7 +49,6 @@ class ProjectDBA extends DBA
 
         return null;
     }
-
     static protected function _toObject(?OODBBean $bean): ?Project
     {
         if (!$bean instanceof OODBBean || $bean->isEmpty())
@@ -66,8 +65,9 @@ class ProjectDBA extends DBA
             User::parseContactsToken($vars[self::PARTCPNT]),
             $vars[self::DATETIME],
             City::_get(Criteria::ID, (int)$vars[self::CITY]),
-            Statut::_get(Criteria::ID, (int)$vars[self::STATUT])
-        ,
+            Statut::_get(Criteria::ID, (int)$vars[self::STATUT]),
+           
+        
         );
     }
 }

@@ -27,7 +27,7 @@ try {
         if (!($user instanceof User))
             return false;
         $user->setEmail($_POST[EMAIL]);
-        $user->setPassword($_POST[PASSWORD]);
+        $user->setPassword(password_hash($_POST[PASSWORD], PASSWORD_DEFAULT));
         $user->setContact($contact);
         $user->setProfile($profile); 
         $user->setStatut($_POST[STATUT]); 

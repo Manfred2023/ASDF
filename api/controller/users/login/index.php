@@ -21,8 +21,10 @@ try {
     if(password_verify($_POST[PASSWORD], $user->getPassword())){
         $_SESSION['auth'] = 'ok';
         Reply::_success("request_was_successfully_processed");  
+        echo "Page non trouvée";
     } else{
         Reply::_error('user_authentication_failed');
+        echo "Page non trouvée";
     }
     
 } catch (Exception $exception) {
