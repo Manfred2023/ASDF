@@ -1,6 +1,23 @@
 <?php
-if (session_status() < 1)
-    header('location:../../index.php');
+
+require_once '../../../api/controller/contacts/contactController.php';
+$contactController = new ContactController();
+// Vérifie si une action a été soumise via POST
+if(isset($_POST["action"])){
+
+    $action = $_POST['action'];
+    $contactController = new ContactController();
+    switch ($action) {
+        case 'contact':
+            $contactController->createUpdate();
+            break;
+
+        default:
+            echo "Page non trouvée";
+            break;
+    }
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -52,11 +69,11 @@ if (session_status() < 1)
         <div class="col">
             <div class="card h-100 text-dark bg-white w-100 m-0 p-0 shadow-sm tile tile-light">
                 <div class="card-body d-flex justify-content-center px-2 pt-2 pb-0">
-                    <img class="" src="https://demo.microware.cm/public/assets/img/icon/family-01.svg" alt="Famille" width="80" height="80">
+                    <img class="" src="../../asset/icone/svg/presentation.svg" alt="Famille" width="80" height="80">
                 </div>
                 <div class="card-body d-flex flex-column justify-content-center px-2 pb-3 pt-0">
-                    <a target="_self" href="#" class="stretched-link text-decoration-none tile-title text-center mx-0 mt-1 mb-1 lh-1">Famille</a>
-                    <p class="tile-sub-title lh-1 lead-0_85 font-alt fw-400 mb-0 text-center">Classe / Catégorie / Type</p>
+                    <a target="_self" href="#" class="stretched-link text-decoration-none tile-title text-center mx-0 mt-1 mb-1 lh-1">rapport</a>
+                    <p class="tile-sub-title lh-1 lead-0_85 font-alt fw-400 mb-0 text-center">Gestion des rapport </p>
                 </div>
 
             </div>
@@ -64,7 +81,7 @@ if (session_status() < 1)
         <div class="col">
             <div class="card h-100 text-dark bg-white w-100 m-0 p-0 shadow-sm tile tile-light">
                 <div class="card-body d-flex justify-content-center px-2 pt-2 pb-0">
-                    <img class="" src="https://demo.microware.cm/public/assets/img/icon/profile-01.svg" alt="Profile" width="80" height="80">
+                    <img class="" src="../../asset/icone/svg/user-check.svg" alt="Profile" width="80" height="80">
                 </div>
                 <div class="card-body d-flex flex-column justify-content-center px-2 pb-3 pt-0">
                     <a target="_self" href="https://demo.microware.cm/fr/profile.ime" class="stretched-link text-decoration-none tile-title text-center mx-0 mt-1 mb-1 lh-1">Profile</a>
@@ -76,7 +93,7 @@ if (session_status() < 1)
         <div class="col">
             <div class="card h-100 text-dark bg-white w-100 m-0 p-0 shadow-sm tile tile-light">
                 <div class="card-body d-flex justify-content-center px-2 pt-2 pb-0">
-                    <img class="" src="https://demo.microware.cm/public/assets/img/icon/profile-01.svg" alt="Profile" width="80" height="80">
+                    <img class="" src="../../asset/icone/svg/checkup-list.svg" alt="Profile" width="80" height="80">
                 </div>
                 <div class="card-body d-flex flex-column justify-content-center px-2 pb-3 pt-0">
                     <a target="_self" href="https://demo.microware.cm/fr/profile.ime" class="stretched-link text-decoration-none tile-title text-center mx-0 mt-1 mb-1 lh-1">Project</a>
@@ -88,7 +105,7 @@ if (session_status() < 1)
         <div class="col">
             <div class="card h-100 text-dark bg-white w-100 m-0 p-0 shadow-sm tile tile-light">
                 <div class="card-body d-flex justify-content-center px-2 pt-2 pb-0">
-                    <img class="" src="https://demo.microware.cm/public/assets/img/icon/user.svg" alt="Utilisateur" width="80" height="80">
+                    <img class="" src="../../asset/icone/svg/users.svg" alt="Utilisateur" width="80" height="80">
                 </div>
                 <div class="card-body d-flex flex-column justify-content-center px-2 pb-3 pt-0">
                     <a target="_self" href="https://demo.microware.cm/fr/user.ime" class="stretched-link text-decoration-none tile-title text-center mx-0 mt-1 mb-1 lh-1">Utilisateur</a>
@@ -100,7 +117,7 @@ if (session_status() < 1)
         <div class="col">
             <div class="card h-100 text-dark bg-white w-100 m-0 p-0 shadow-sm tile tile-light">
                 <div class="card-body d-flex justify-content-center px-2 pt-2 pb-0">
-                    <img class="" src="https://demo.microware.cm/public/assets/img/icon/user.svg" alt="Utilisateur" width="80" height="80">
+                    <img class="" src="../../asset/icone/svg/address-book.svg" alt="Utilisateur" width="80" height="80">
                 </div>
                 <div class="card-body d-flex flex-column justify-content-center px-2 pb-3 pt-0">
                     <a target="_self" href="https://demo.microware.cm/fr/user.ime" class="stretched-link text-decoration-none tile-title text-center mx-0 mt-1 mb-1 lh-1">Contact</a>

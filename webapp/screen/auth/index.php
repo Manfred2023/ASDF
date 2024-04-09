@@ -35,39 +35,49 @@ if(isset($_POST["action"])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../../plugin/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../plugin/script/css/style.css">
     <title>Title</title>
 </head>
-<body class="d-flex flex-column h-100 bg-light p-0" style="background:url('https://demo.microware.cm/public/assets/img/bg-app-login.svg');background-repeat:no-repeat;background-size:cover">
+<body class="d-flex flex-column h-100 bg-light p-0" style="background:url('../../asset/backgound/backgroung.jpg');background-repeat:no-repeat;background-size:cover">
     <div class="row">
         <div class="col-4"></div>
-        <div class="col-4 r">
+        <div class="col-4 ">
             <div class="d-flex justify-content-center">
                 <img src="../../asset/logo/asdf.png" class="img-fluid pt-5 pb-5" alt="asdf" style="width: 20em;">
             </div>
-            <div class="pt-5">
-                <div class="card text-center">
-
-                    <div class="card-body">
-                        <form action="index.php" method="POST">
-                            <div class="card-body text-start">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" id="email" class="form-control" name="email" aria-describedby="passwordHelpBlock">
-                                <label for="inputPassword5" class="form-label">Password</label>
-                                <input type="password" id="inputPassword5" class="form-control" name="password" aria-describedby="passwordHelpBlock">
+            <div class="row justify-content-center">
+                <div class=" ">
+                    <div class="login-wrap p-4 p-md-5">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="fa fa-user-o"></span>
+                        </div>
+                        <h3 class="text-center mb-4">Have an account?</h3>
+                        <form action="index.php" class="login-form" method="post">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control rounded-left" name="email" placeholder="asdf@foundations.com" required>
                             </div>
-                            <input type="hidden" name="action" value="login"> <!-- Champ caché pour spécifier l'action -->
-                            <div class="pb-2 d-grid gap-2 col-6 mx-auto col-11 mt-3" style="align-items: end">
-                                <button type="submit" class="btn btn-outline-primary">Connexion</button>
+                            <div class="form-group ">
+                                <label>Password</label>
+                                <input type="password" class="form-control rounded-left" name="password" placeholder="Password" required>
+                            </div>
+
+                            <input type="hidden" name="action" value="login">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary rounded submit p-3 px-5">Connexion</button>
                             </div>
                         </form>
-                    </div>
-                    <div class="card-footer text-muted">
-                        man-asdf
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-4"></div>
     </div>
+    <script src="../../plugin/script/js/jquery.min.js"></script>
+    <script src="../../plugin/script/js/popper.js"></script>
+    <script src="../../plugin/script/js/bootstrap.min.js"></script>
+    <script src="../../plugin/script/js/main.js"></script>
 </body>
  </html>
