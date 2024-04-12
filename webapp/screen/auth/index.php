@@ -54,7 +54,7 @@ if(isset($_POST["action"])){
                             <span class="fa fa-user-o"></span>
                         </div>
                         <h3 class="text-center mb-4">Have an account?</h3>
-                        <form action="index.php" class="login-form" method="post">
+                        <form  class="login-form" method="post">
                             <div class="form-group">
                                 <label>Email</label>
                                 <input type="text" class="form-control rounded-left" name="email" placeholder="asdf@foundations.com" required>

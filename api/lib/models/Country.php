@@ -173,6 +173,10 @@ class Country extends CountryDBA
         };
     }
 
+
+
+
+
     static public function _list(): ?array
     {
         if (!empty($beans = parent::_getAll(self::TABLE, []))) {

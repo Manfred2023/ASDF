@@ -175,7 +175,7 @@ class Contact extends ContactDBA
         if (!empty($beans = parent::_getAll(self::TABLE, []))) {
             foreach ($beans as $bean)
                 if (($item = self::_toObject($bean)) instanceof self)
-                    $contacts[] = $item->toArray();
+                    $contacts[] = $item;
         }
         return $contacts ?? null;
     }

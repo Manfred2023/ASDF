@@ -41,30 +41,7 @@ class ContactController {
         }
     }
 
-    public function login() {
-        try {
-            # Check required fields
-            Criteria::_formRequiredCheck([EMAIL, PASSWORD], $_POST);
-            $user = User::_get(Criteria::EMAIL, $_POST[EMAIL]);
-            if (!($user instanceof User))
-                return false;
 
-            $authenticated = (password_verify($_POST[PASSWORD], $user->getPassword())) ;
-            if ($authenticated) {
-                header("Location:../../screen/overview/index.php");
-                echo "succes";
-                exit();
-            } else {
-                header("Location:../../screen/auth/index.php");
-                echo "Page non trouvée";
-                exit();
-            }
-
-        } catch (Exception $exception) {
-            Reply::_exception($exception);
-        }
-
-    }
 
     public function logout() {
         // Cette méthode gérerait le processus de déconnexion des utilisateurs
