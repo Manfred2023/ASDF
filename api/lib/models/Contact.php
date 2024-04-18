@@ -85,7 +85,7 @@ class Contact extends ContactDBA
     {
         return $this->city;
     } 
-    public function getOffice(): string
+    public function getOffice(): ?string
     {
         return $this->office;
     } 

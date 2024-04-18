@@ -40,6 +40,10 @@ class ContactController {
             Reply::_exception($exception);
         }
     }
+    public function select(int $tokenEdit)
+    {
+        header('location:../../screen/contact/index.php?token=' . urlencode($tokenEdit));
+    }
 
 
 

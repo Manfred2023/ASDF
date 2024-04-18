@@ -3,6 +3,10 @@
 <!-- Copyright (c) 2024. All rights reserved. -->
 <!-- Last modified 09/04/2024 00:50 -->
 <?php
+/*if($_GET['token'] != null){
+    $token = $_GET['token'];
+    $users = User::_getByToken($token);
+}*/
 
 
 require_once '../../../api/controller/contacts/contactController.php';
@@ -86,7 +90,7 @@ if (isset($_POST["action"])) {
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput1"
                                                    class="form-label p-0 font-regular text-black-50 lead-1_2 ms-2">Prénom </label>
-                                            <input type="text" class="form-control" name="firstname"
+                                            <input type="text" class="form-control" name="firstname" value= """
                                                    style="height: 50px ">
                                         </div>
                                     </div>
@@ -161,7 +165,7 @@ if (isset($_POST["action"])) {
                                 <div class="col-12  mx-auto ">
                                     <div class="d-grid grap-2">
                                         <input type="hidden" name="action" value="createUpdate">
-                                        <input type="hidden" name="token" value=" ">
+                                        <input type="hidden" name="token" value="null">
                                         <button type="submit"
                                                 class="btn  btn-outline-primary btn-block p-0 font-regular  lead-1_2 ms-2"
                                                 style="height: 50px; font-size: 24px; border-radius: 8px; ">Envoyer
@@ -190,12 +194,21 @@ if (isset($_POST["action"])) {
                                             $contact = Contact::_list();
                                             foreach ($contact as $contacts) {
                                                 echo '<tr>
-                                          <td style="font-size: 12px ">' . $contacts->getFirstname() . ' ' . $contacts->getLastname() . '</td>
-                                          <td style="font-size: 12px ">' . $contacts->getMobile() . '  </td>
-                                          <td style="font-size: 12px ">' . $contacts->getCity()->getName() . ',' . $contacts->getCity()->getcountry()->getNameen() . ' </td>
-                                      </tr>';
+                                                <td style="font-size: 12px;">
+                                                    <a style="color: #0b2e13" href="index.php?id=' . $contacts->getToken() . '">
+                                                        ' . $contacts->getFirstname() . ' ' . $contacts->getLastname() . '
+                                                    </a>
+                                                    <br>
+                                                    <span style="font-size: 10px; p-0 font-regular text-black-50 lead-1_2 ms-2">
+                                                        ' . $contacts->getOffice() . '
+                                                    </span>
+                                                </td>
+                                                <td style="font-size: 12px;">' . $contacts->getMobile() . '</td>
+                                                <td style="font-size: 12px;">' . $contacts->getCity()->getName() . ', ' . $contacts->getCity()->getcountry()->getNameen() . '</td>
+                                            </tr>';
                                             }
                                             ?>
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -208,7 +221,7 @@ if (isset($_POST["action"])) {
                 </div>
             </form>
 
-        </div>onclick="window.location.href = 'https://example.com';"
+        </div>
     </div>
 
     <script src="../../plugin/bootstrap/css/bootstrap.min.css"></script>

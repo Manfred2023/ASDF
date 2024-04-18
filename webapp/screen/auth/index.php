@@ -8,7 +8,6 @@ require_once '../../../api/controller/users/UserController.php';
 $userController = new UserController();
 // Vérifie si une action a été soumise via POST
 if(isset($_POST["action"])){
-    
     $action = $_POST['action'];
     $userController = new UserController();
     switch ($action) {
@@ -38,7 +37,7 @@ if(isset($_POST["action"])){
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../plugin/script/css/style.css">
-    <title>Title</title>
+    <title>Login</title>
 </head>
 <body class="d-flex flex-column h-100 bg-light p-0" style="background:url('../../asset/backgound/backgroung.jpg');background-repeat:no-repeat;background-size:cover">
     <div class="row">

@@ -8,7 +8,7 @@
     <title> Overview </title>
 
 </head>
-<body class="d-flex flex-column h-100 mi-bg-primary pt-inner">
+<body class="d-flex flex-column h-100 mi-bg-primary pt-inner bg-light">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-white py-0 shadow-sm">
     <div class="container-fluid">
         <div class="w-100 d-flex align-items-center justify-content-between p-2 text-black">
@@ -42,7 +42,7 @@
                     <img class="" src="../../asset/icone/svg/user-check.svg" alt="Profile" width="80" height="80">
                 </div>
                 <div class="card-body d-flex flex-column justify-content-center px-2 pb-3 pt-0">
-                    <a target="_self" href="https://demo.microware.cm/fr/profile.ime" class="stretched-link text-decoration-none tile-title text-center mx-0 mt-1 mb-1 lh-1">Profile</a>
+                    <a target="_self" href="../profile" class="stretched-link text-decoration-none tile-title text-center mx-0 mt-1 mb-1 lh-1">Profile</a>
                     <p class="tile-sub-title lh-1 lead-0_85 font-alt fw-400 mb-0 text-center">Gestion des profils</p>
                 </div>
 
@@ -54,7 +54,7 @@
                     <img class="" src="../../asset/icone/svg/checkup-list.svg" alt="Profile" width="80" height="80">
                 </div>
                 <div class="card-body d-flex flex-column justify-content-center px-2 pb-3 pt-0">
-                    <a target="_self" href="https://demo.microware.cm/fr/profile.ime" class="stretched-link text-decoration-none tile-title text-center mx-0 mt-1 mb-1 lh-1">Project</a>
+                    <a target="_self" href="../project" class="stretched-link text-decoration-none tile-title text-center mx-0 mt-1 mb-1 lh-1">Project</a>
                     <p class="tile-sub-title lh-1 lead-0_85 font-alt fw-400 mb-0 text-center">Gestion des Projects</p>
                 </div>
 
@@ -66,7 +66,7 @@
                     <img class="" src="../../asset/icone/svg/users.svg" alt="Utilisateur" width="80" height="80">
                 </div>
                 <div class="card-body d-flex flex-column justify-content-center px-2 pb-3 pt-0">
-                    <a target="_self" href="https://demo.microware.cm/fr/user.ime" class="stretched-link text-decoration-none tile-title text-center mx-0 mt-1 mb-1 lh-1">Utilisateur</a>
+                    <a target="_self" href="../user" class="stretched-link text-decoration-none tile-title text-center mx-0 mt-1 mb-1 lh-1">Utilisateur</a>
                     <p class="tile-sub-title lh-1 lead-0_85 font-alt fw-400 mb-0 text-center">Gestion des utilisateurs</p>
                 </div>
 
